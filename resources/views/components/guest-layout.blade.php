@@ -15,7 +15,7 @@
     <div class="bg-black min-h-screen">
         <div class="relative isolate px-6 pt-10 lg:px-8">
             <div class="mx-auto max-w-[325px] pb-32">
-                <div class="text-center font-archivo">
+                <div class="text-center font-archivo text-white">
                     {{ $slot }}
                 </div>
             </div>

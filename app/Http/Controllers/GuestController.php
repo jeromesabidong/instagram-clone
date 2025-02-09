@@ -13,7 +13,7 @@ class GuestController extends Controller
 
     public function create()
     {
-        dd('to-do: register');
+        return view('guest.register');
     }
 
     public function store()
