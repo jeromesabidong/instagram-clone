@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Guest\RegistrationRequest;
+use Illuminate\Validation\Rules\Password;
 
 class GuestController extends Controller
 {
@@ -16,8 +17,10 @@ class GuestController extends Controller
         return view('guest.register');
     }
 
-    public function store()
+    public function store(RegistrationRequest $request)
     {
+        $registrationDetails = $request->all();
+
         dd('to-do: submit register');
     }
 

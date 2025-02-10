@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-guest.layout>
     <div class="px-8 py-10 border border-gray-800">
         <h1 class="text-2xl">{{ env("APP_NAME") }}</h1>
     
@@ -14,12 +14,13 @@
             <div class="flex-grow h-[1px] relative bg-slate-800"></div>
         </div>
 
-        <form action="{{ url('guest/register') }}" method="post">
+        <form action="{{ url('/register') }}" method="post">
+            @csrf
             <div class="flex flex-col gap-3 mt-5">
-                <input class="flex-grow bg-slate-800 border border-gray-700 rounded-sm px-3 py-2 text-xs" type="text" name="email" id="email" placeholder="Email Address" required>
-                <input class="flex-grow bg-slate-800 border border-gray-700 rounded-sm px-3 py-2 text-xs" type="text" name="password" id="password" placeholder="Password" required>
-                <input class="flex-grow bg-slate-800 border border-gray-700 rounded-sm px-3 py-2 text-xs" type="text" name="name" id="name" placeholder="Full Name" required>
-                <input class="flex-grow bg-slate-800 border border-gray-700 rounded-sm px-3 py-2 text-xs" type="text" name="username" id="username" placeholder="Username" required>
+                <x-guest.text-field name="email" :required="true" placeholder="Email Address" />
+                <x-guest.text-field name="password" required="true" placeholder="Password" mask="true" />
+                <x-guest.text-field name="name" required="true" placeholder="Full Name" />
+                <x-guest.text-field name="username" required="true" placeholder="Username" />
 
                 <p class=" text-gray-500 text-xs mt-1">
                     People who use our service may have uploaded your contact information to {{ env('APP_NAME') }}. 
@@ -38,4 +39,31 @@
             <a class="text-blue" href="{{ url(route('login')) }}">Login</a>
         </p>
     </div>
-</x-guest-layout>
+
+    <div class="mt-6">
+        <p>Get the app.</p>
+    </div>
+
+    <div class="mt-2 flex gap-3 h-12 justify-center items-center">
+        <div class="flex-grow border rounded-lg text-right px-2">
+            <a href="#">
+                <p class="text-xl flex flex-col py-1">
+                    <span class="text-xs">Download on the</span>
+                    <br>
+                    App Store
+                </p>
+            </a>
+        </div>
+        
+        <div class="flex-grow border rounded-lg text-left px-2">
+            <a href="#">
+                <p class="text-xl flex flex-col py-1">
+                    <span class="text-xs">Get it on</span>
+                    <br>
+                    Google Play
+                </p>
+            </a>
+        </div>
+    </div>
+
+</x-guest.layout>
