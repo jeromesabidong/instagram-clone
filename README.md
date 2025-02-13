@@ -2,6 +2,8 @@
 
 This project has already served its purpose. 
 
+![screenshot](/docs/images/screenshot.png)
+
 It can only:
 - show you the login screen
 - let you register a user
