@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Guest\RegistrationRequest;
+use App\Mail\UserRegistration;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class GuestController extends Controller
 {
@@ -13,16 +17,33 @@ class GuestController extends Controller
 
     public function create()
     {
-        dd('to-do: register');
+        return view('guest.register');
     }
 
-    public function store()
+    /**
+     * Very simplistic login.. 
+     */
+    public function store(RegistrationRequest $request)
     {
-        dd('to-do: submit register');
+        $registrationDetails = $request->all();
+
+        $user = User::create($registrationDetails);
+
+        Mail::to($request->email)->queue(
+            new UserRegistration($user)
+        );
+        
+        Auth::login($user);
+
+        return redirect('dashboard');
     }
 
     public function login()
     {
-        dd('to-do: login');
+        $user = User::find(1);
+
+        Auth::login($user);
+
+        return redirect("dashboard");
     }
 }

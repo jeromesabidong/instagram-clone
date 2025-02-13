@@ -1,3 +1,4 @@
+@props(['submit' => false])
 @php 
     $defaultClassses = implode(' ', [
         'bg-blue',
@@ -9,4 +10,4 @@
     ]);
 @endphp
 
-<a {{ $attributes(['class' => $defaultClassses]) }}>{{ $slot }}</a>
+<button type="{{ $submit ? 'submit' : 'button' }}" {{ $attributes(['class' => $defaultClassses]) }}>{{ $slot }}</button>
